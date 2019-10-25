@@ -8,10 +8,11 @@
 <div class="row justify-content-center mb-5">
     <% @products.each do |product| %>
     <div class="col-3">
-      <div class="card border-0"><%=image_tag(product.image_url)%></div>
+      <div class="card border-0"><%= image_tag(product.image_url, class: 'list_image') %></div>
       <div class="card-body">
         <p class="card-text text-center"><%= product.title %></p>
-        <p class="card-text text-center"><%= product.description %></p>
+        <p class="card-text text-center"><%= truncate(strip_tags(product.description),
+                                                      length: 40) %></p>
         <p class="card-text text-center"><%= product.price %></p>
 
   <p><%= link_to 'Show', product %></p>
@@ -23,8 +24,6 @@
     </div>
 </div>
 
-  </tbody>
-</table>
 
 <br>
 
