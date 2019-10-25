@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col">
+    <h2 class="text-center display-4 my-5">Time to choose ur goods !</h2>
+  </div>
+</div>
+
+<div class="container">
+<div class="row justify-content-center mb-5">
+    <% @products.each do |product| %>
+    <div class="col-3">
+      <div class="card border-0"><%=image_tag(product.image_url)%></div>
+      <div class="card-body">
+        <p class="card-text text-center"><%= product.title %></p>
+        <p class="card-text text-center"><%= product.description %></p>
+        <p class="card-text text-center"><%= product.price %></p>
+
+  <p><%= link_to 'Show', product %></p>
+  <p><%= link_to 'Edit', edit_product_path(product) %></p>
+  <p><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+      </div>
+    </div>
+  <% end %>
+    </div>
+</div>
+
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product', new_product_path %>
