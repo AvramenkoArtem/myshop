@@ -1,3 +1,4 @@
+<p id="notice"><%= notice %></p>
 <div class="row">
   <div class="col">
     <h2 class="text-center display-4 my-5">Time to choose ur goods !</h2>
@@ -5,17 +6,24 @@
 </div>
 
 <div class="container">
+  <h2><%= @visits %></h2>
   <div class="row justify-content-center mb-5">
+    <% cache @products do %>
     <% @products.each do |product| %>
+        <% cache product do %>
       <div class="col-3">
         <div class="card border-0"><%= image_tag(product.image_url, class: 'list_image') %></div>
         <div class="card-body">
           <p class="card-text text-center"><%= product.title %></p>
           <p class="card-text text-center"><%= truncate(strip_tags(product.description),
                                                         length: 40) %></p>
-          <p class="card-text text-center"><%= number_to_currency(product.price) %></p>
+          <h6 class="card-text"><%= number_to_currency(product.price) %></h6>
+          <%= button_to 'Add to Cart', line_items_path(product_id: product) %>
+
         </div>
       </div>
+          <% end %>
     <% end %>
+      <% end %>
   </div>
 </div>
